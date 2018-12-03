@@ -96,6 +96,7 @@
     <variable name="KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE" value="NO"/>
   </plugin>
   <plugin name="cordova-plugin-google-analytics" spec="1.8.6"/>
+  <plugin name="cordova-plugin-app-preferences" spec="0.99.3"/>
   <engine name="browser" spec="^5.0.4"/>
   <engine name="ios" spec="4.5.5"/>
   <hook src="buildScripts/increment-build-number.js" type="before_prepare"/>
