@@ -3,9 +3,9 @@ import { JournalProvider } from './journal';
 
 import journalRespJson from '../../mocks/data/journalResp.json';
 import transformedJournalJson from '../../mocks/data/transformedJournal.json';
-import { AppConfigProvider } from '../app-config/app-config';
+import { AppConfigDynamicProvider } from '../app-config-dynamic/app-config-dynamic';
 
-jest.mock('../app-config/app-config');
+jest.mock('../app-config-dynamic/app-config-dynamic');
 
 describe('PROVIDER: journal - ', () => {
   let provider: JournalProvider;
@@ -19,7 +19,11 @@ describe('PROVIDER: journal - ', () => {
   };
 
   beforeEach(() => {
-    provider = new JournalProvider(httpMock as any, dateTimeUtilMock, new AppConfigProvider());
+    provider = new JournalProvider(
+      httpMock as any,
+      dateTimeUtilMock,
+      new AppConfigDynamicProvider(httpMock as any)
+    );
   });
 
   it('should return some journal slots', () => {

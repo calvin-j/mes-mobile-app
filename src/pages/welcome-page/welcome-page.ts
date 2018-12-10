@@ -5,6 +5,8 @@ import { JournalPage } from '../journal/journal';
 import { HelpSectionPage } from '../../help/pages/help-section/help-section';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AnalyticsScreenNames } from '../../providers/analytics/analytics.model';
+import { AppconfigPluginTestPage } from '../appconfig-plugin-test-page/appconfig-plugin-test-page';
+import { ApppreferencesPluginTestPage } from '../apppreferences-plugin-test-page/apppreferences-plugin-test-page';
 
 @Component({
   selector: 'page-welcome',
@@ -14,6 +16,8 @@ export class WelcomePage {
   title: string = 'Welcome';
   journalPage: Page = JournalPage;
   helpPage: Page = HelpSectionPage;
+  appConfigPluginPage: Page = AppconfigPluginTestPage;
+  appPreferencesPluginPage: Page = ApppreferencesPluginTestPage;
 
   constructor(
     public navCtrl: NavController,

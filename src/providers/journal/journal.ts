@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { IJournal, IJournalResp } from './journal-model';
 import { DateTimeUtility } from '../../shared/utils/datetime';
-import { AppConfigProvider } from '../app-config/app-config';
 import 'rxjs/Rx';
+import { AppConfigDynamicProvider } from '../app-config-dynamic/app-config-dynamic';
 
 /*
   Generated class for the JournalProvider provider.
@@ -20,7 +20,7 @@ export class JournalProvider {
   constructor(
     private httpClient: HttpClient,
     private dateTimeUtil: DateTimeUtility,
-    private appConfig: AppConfigProvider
+    private appConfig: AppConfigDynamicProvider
   ) {
     this.apiUrl = this.appConfig.getJournalApiUrl();
   }

@@ -3,7 +3,6 @@ import { NavController, NavParams } from 'ionic-angular';
 import { DeclarationConsentPage } from '../declaration-consent/declaration-consent';
 import { PolicyDataPage } from '../policy-data/policy-data';
 import { Page } from 'ionic-angular/navigation/nav-util';
-import { AppConfigProvider } from '../../providers/app-config/app-config';
 import { PretestChecksPage } from '../pretest-checks/pretest-checks';
 import { InitiateSwapPage } from '../initiate-swap/initiate-swap';
 import { IJournal } from '../../providers/journal/journal-model';
@@ -31,7 +30,6 @@ export class CandidateInfoPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public configService: AppConfigProvider,
     public logging: AnalyticsProvider
   ) {
     this.signature = this.navParams.get('signature');

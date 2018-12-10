@@ -2,7 +2,6 @@ import { DeviceAuthentication } from '../../types/device-authentication';
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
-import { AppConfigProvider } from '../../providers/app-config/app-config';
 import { PretestChecksPage } from '../pretest-checks/pretest-checks';
 import { EndTestReasonPage } from '../end-test-reason/end-test-reason';
 import { Page } from 'ionic-angular/navigation/nav-util';
@@ -13,6 +12,7 @@ import { getFormattedCandidateName } from '../../shared/utils/formatters';
 import { MesSignaturePadComponent } from '../../components/mes-signature-pad/mes-signature-pad';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import { AnalyticsScreenNames } from '../../providers/analytics/analytics.model';
+import { signaturePadOptions } from '../../components/mes-signature-pad/mes-signature-pad.options';
 
 @Component({
   selector: 'page-declaration-consent',
@@ -35,11 +35,10 @@ export class DeclarationConsentPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public configService: AppConfigProvider,
     private deviceAuth: DeviceAuthentication,
     public logging: AnalyticsProvider
   ) {
-    this.signaturePadOptions = configService.getSignaturePadOptions();
+    this.signaturePadOptions = signaturePadOptions;
     this.slotDetail = this.navParams.get('slotDetail');
   }
 

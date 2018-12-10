@@ -12,7 +12,7 @@ import { App } from './app.component';
 import { WelcomePage } from '../pages/welcome-page/welcome-page';
 import { Device } from '@ionic-native/device';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-import { AppConfigProvider } from '../providers/app-config/app-config';
+import { AppConfigDynamicProvider } from '../providers/app-config-dynamic/app-config-dynamic';
 
 describe('App', () => {
   let fixture: ComponentFixture<App>;
@@ -80,7 +80,7 @@ describe('App', () => {
         { provide: Globalization, useValue: globalizationStub },
         { provide: Device, useValue: deviceStub },
         { provide: GoogleAnalytics, useValue: googleAnalyticsMock },
-        { provide: AppConfigProvider, useValue: appConfigStub }
+        { provide: AppConfigDynamicProvider, useValue: appConfigStub }
       ]
     }).compileComponents();
 

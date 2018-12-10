@@ -30,7 +30,6 @@ import { ComponentsModule } from '../components/components.module';
 import { WeatherSelectorComponent } from '../components/weather-selector/weather-selector';
 import { JournalProvider } from '../providers/journal/journal';
 import { DateTimeUtility } from '../shared/utils/datetime';
-import { AppConfigProvider } from '../providers/app-config/app-config';
 import { QuestionsModalComponent } from '../components/questions-modal/questions-modal';
 import { SelectButtonComponent } from '../components/select-button/select-button';
 import {
@@ -59,6 +58,10 @@ import { WelcomePage } from '../pages/welcome-page/welcome-page';
 import { Device } from '@ionic-native/device';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { AnalyticsProvider } from '../providers/analytics/analytics';
+import { AppconfigPluginTestPage } from '../pages/appconfig-plugin-test-page/appconfig-plugin-test-page';
+import { ApppreferencesPluginTestPage } from '../pages/apppreferences-plugin-test-page/apppreferences-plugin-test-page';
+import { AppPreferences } from '@ionic-native/app-preferences';
+import { AppConfigDynamicProvider } from '../providers/app-config-dynamic/app-config-dynamic';
 
 export function createTranslateLoader(http: Http) {
   return new TranslateStaticLoader(http, 'assets/i18n', '.json');
@@ -86,7 +89,9 @@ export function createTranslateLoader(http: Http) {
     AoopCustomHammerConfigPage,
     PassDataCollectionPage,
     HealthDeclarationPage,
-    WelcomePage
+    WelcomePage,
+    AppconfigPluginTestPage,
+    ApppreferencesPluginTestPage
   ],
   imports: [
     BrowserModule,
@@ -132,13 +137,14 @@ export function createTranslateLoader(http: Http) {
     PassDataCollectionPage,
     HealthDeclarationPage,
     TextboxModalComponent,
-    WelcomePage
+    WelcomePage,
+    AppconfigPluginTestPage,
+    ApppreferencesPluginTestPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    AppConfigProvider,
     JournalProvider,
     DateTimeUtility,
     HazardRecorderProvider,
@@ -154,7 +160,9 @@ export function createTranslateLoader(http: Http) {
     VehicleCheckProvider,
     Device,
     GoogleAnalytics,
-    AnalyticsProvider
+    AnalyticsProvider,
+    AppPreferences,
+    AppConfigDynamicProvider
   ]
 })
 export class AppModule {}

@@ -1,15 +1,15 @@
 import { Injectable } from '@angular/core';
-import { AppConfigProvider } from '../app-config/app-config';
 import { IAnalyticsProvider } from './analytics.model';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
 import { Platform } from 'ionic-angular';
+import { AppConfigDynamicProvider } from '../app-config-dynamic/app-config-dynamic';
 
 @Injectable()
 export class AnalyticsProvider implements IAnalyticsProvider {
   googleAnalyticsKey: string;
 
   constructor(
-    private appConfig: AppConfigProvider,
+    private appConfig: AppConfigDynamicProvider,
     public ga: GoogleAnalytics,
     public platform: Platform
   ) {

@@ -11,8 +11,8 @@ import { Insomnia } from '@ionic-native/insomnia';
 import { Globalization } from '@ionic-native/globalization';
 import { WelcomePage } from '../pages/welcome-page/welcome-page';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
-import { AppConfigProvider } from '../providers/app-config/app-config';
 import { AnalyticsEventCategories, AnalyticsEvents } from '../providers/analytics/analytics.model';
+import { AppConfigDynamicProvider } from '../providers/app-config-dynamic/app-config-dynamic';
 
 @Component({
   templateUrl: 'app.html'
@@ -36,7 +36,7 @@ export class App {
     globalization: Globalization,
     private device: Device,
     private ga: GoogleAnalytics,
-    private appConfig: AppConfigProvider
+    private dynamicAppConfig: AppConfigDynamicProvider
   ) {
     platform.ready().then(() => {
       // Okay, so the platform is ready and our plugins are available.
@@ -47,30 +47,34 @@ export class App {
 
       translate.setDefaultLang(DEFAULT_LANG);
 
-      if (platform.is('cordova')) {
-        screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
-        insomnia.keepAwake();
-        globalization.getPreferredLanguage().then((res) => {
-          this.setDefaultLanguage(res.value);
-        });
+      this.dynamicAppConfig.refreshConfigSettings().subscribe(() => {
+        if (platform.is('cordova')) {
+          screenOrientation.lock(screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY);
+          insomnia.keepAwake();
+          globalization.getPreferredLanguage().then((res) => {
+            this.setDefaultLanguage(res.value);
+          });
 
-        this.ga
-          .startTrackerWithId(this.appConfig.getGoogleAnalyticsKey())
-          .then(() => {
-            this.ga.setUserId(this.device.uuid);
-            this.ga
-              .addCustomDimension(
-                this.appConfig.getGoogleAnalyticsUserIdDimension(),
-                this.device.uuid
-              )
-              .then();
-            this.ga.trackEvent(AnalyticsEventCategories.LIFECYCLE, AnalyticsEvents.APP_LOAD).then();
-          })
-          .catch((e) => console.log('Error starting GA', e));
-      } else {
-        const browserLanguage = translate.getBrowserLang() || DEFAULT_LANG;
-        this.setDefaultLanguage(browserLanguage);
-      }
+          this.ga
+            .startTrackerWithId(this.dynamicAppConfig.getGoogleAnalyticsKey())
+            .then(() => {
+              this.ga.setUserId(this.device.uuid);
+              this.ga
+                .addCustomDimension(
+                  this.dynamicAppConfig.getGoogleAnalyticsUserIdDimension(),
+                  this.device.uuid
+                )
+                .then();
+              this.ga
+                .trackEvent(AnalyticsEventCategories.LIFECYCLE, AnalyticsEvents.APP_LOAD)
+                .then();
+            })
+            .catch((e) => console.log('Error starting GA', e));
+        } else {
+          const browserLanguage = translate.getBrowserLang() || DEFAULT_LANG;
+          this.setDefaultLanguage(browserLanguage);
+        }
+      });
     });
   }
 

@@ -1,6 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-import { AppConfigProvider } from '../../providers/app-config/app-config';
 import { DeviceAuthentication } from '../../types/device-authentication';
 import { PostTestSummaryPage } from '../post-test-summary/post-test-summary';
 import { Page } from 'ionic-angular/navigation/nav-util';
@@ -9,6 +8,7 @@ import { IJournal, ICandidateName } from '../../providers/journal/journal-model'
 import { HelpDebriefPage } from '../../help/pages/help-debrief/help-debrief';
 import { AnalyticsScreenNames } from '../../providers/analytics/analytics.model';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
+import { signaturePadOptions } from '../../components/mes-signature-pad/mes-signature-pad.options';
 
 @Component({
   selector: 'page-health-declaration',
@@ -28,11 +28,10 @@ export class HealthDeclarationPage {
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    public configService: AppConfigProvider,
     private deviceAuth: DeviceAuthentication,
     public logging: AnalyticsProvider
   ) {
-    this.signaturePadOptions = configService.getSignaturePadOptions();
+    this.signaturePadOptions = signaturePadOptions;
     this.slotDetail = this.navParams.get('slotDetail');
     this.passCertificateNumber = this.navParams.get('passNumber');
   }
