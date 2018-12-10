@@ -30,9 +30,8 @@ export class AppconfigPluginTestPage {
       if (this.platform.is('cordova')) {
         console.log(cordova.plugins.AppConfig.getValue(key));
         return JSON.stringify(cordova.plugins.AppConfig.getValue(key));
-      } else {
-        return 'AppConfig not available on this device';
       }
+      return 'AppConfig not available on this device';
     });
   }
 }
