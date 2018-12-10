@@ -64,7 +64,8 @@ describe('App', () => {
   };
   const appConfigStub = {
     getGoogleAnalyticsKey: jest.fn(),
-    getGoogleAnalyticsUserIdDimension: jest.fn()
+    getGoogleAnalyticsUserIdDimension: jest.fn(),
+    refreshConfigSettings: jest.fn((resolve) => {})
   };
   beforeEach(() => {
     TestBed.configureTestingModule({
