@@ -1,34 +1,23 @@
 [
   {
     "type": "group",
-    "title": "Common",
+    "title": "Settings",
     "items": [
       {
-        "title": "Title",
-        "type": "textfield",
-        "key": "title"
-      },
-      {
-        "title": "Language",
+        "title": "Source",
         "type": "radio",
-        "key": "lang",
-        "default": "en-us",
+        "key": "remote",
+        "default": "remote",
         "items": [
           {
-            "value": "en-us",
-            "title": "English (US)"
+            "value": "remote",
+            "title": "Remote"
           },
           {
-            "value": "en-gb",
-            "title": "English (UK)"
+            "value": "local",
+            "title": "Local"
           }
         ]
-      },
-      {
-        "title": "Debug",
-        "type": "toggle",
-        "default": false,
-        "key": "debug"
       }
     ]
   }

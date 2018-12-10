@@ -24,7 +24,11 @@
     "test:e2e-simulator-bdd": "protractor e2e-simulator-bdd.conf.js",
     "test:generate-report": "node generateTestReport.js",
     "gitSecrets": "git secrets --scan",
-    "scanRepo": "git log -p -n 15 | scanrepo"
+    "scanRepo": "git log -p -n 15 | scanrepo",
+    "config:dev": "cp config/environment.dev.ts src/environment/environment.ts",
+    "config:uat": "cp config/environment.uat.ts src/environment/environment.ts",
+    "config:staging": "cp config/environment.staging.ts src/environment/environment.ts",
+    "config:production": "cp config/environment.production.ts src/environment/environment.ts"
   },
   "dependencies": {
     "@angular-redux/store": "^7.1.1",
@@ -53,6 +57,7 @@
     "cordova-ios": "4.5.5",
     "cordova-plugin-advanced-http": "^1.11.1",
     "cordova-plugin-app-preferences": "0.99.3",
+    "cordova-plugin-appconfig": "1.1.4",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-device-authentication": "git+https://github.com/dvsa/cordova-plugin-device-authentication.git",
     "cordova-plugin-file": "^6.0.1",
@@ -69,6 +74,7 @@
     "event-stream": "^3.3.4",
     "flux-standard-action": "^2.0.1",
     "govuk_frontend_toolkit": "^7.4.2",
+    "gulp": "^3.9.1",
     "ionic-angular": "3.9.2",
     "ionicons": "3.0.0",
     "lodash": "^4.17.5",
@@ -125,7 +131,8 @@
         "KEEP_AVAUDIOSESSION_ALWAYS_ACTIVE": "NO"
       },
       "cordova-plugin-google-analytics": {},
-      "cordova-plugin-app-preferences": {}
+      "cordova-plugin-app-preferences": {},
+      "cordova-plugin-appconfig": {}
     },
     "platforms": [
       "browser",

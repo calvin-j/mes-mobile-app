@@ -1,0 +1,18 @@
+<ion-header>
+    <ion-navbar>
+        <ion-title>
+            App Preferences Plugin Test Page
+        </ion-title>
+    </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+ <ion-card>
+     <button ion-button (click)="showPreferences()">Show settings</button>
+     <button ion-button (click)="getSuite()">Get suite</button>
+     <button ion-button (click)="setPreference('http://dev')">Set api key</button>
+   <button ion-button (click)="readRadio()">Read radio</button>
+     <button ion-button (click)="readPreferences()">Read preferences</button>
+   <button ion-button (click)="showDefaults()">Show Defaults</button>
+ </ion-card>
+</ion-content>

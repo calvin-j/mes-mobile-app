@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<widget id="uk.gov.dvsa.mobile-examiner" version="1.0.1543396707" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
+<widget id="uk.gov.dvsa.mobile-examiner" version="1.0.1544432117" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
   <name>Mobile Examiner Beta</name>
   <description>An application for DVSA driving examiners to conduct driving tests</description>
   <author email="mobexaminer@gmail.com">MES Team</author>
@@ -82,7 +82,7 @@
     <string>Need microphone access to record audio</string>
   </edit-config>
   <plugin name="cordova-plugin-whitelist" spec="^1.3.3"/>
-  <plugin name="cordova-plugin-device" spec="^2.0.2" />
+  <plugin name="cordova-plugin-device" spec="^2.0.2"/>
   <plugin name="cordova-plugin-splashscreen" spec="^5.0.2"/>
   <plugin name="cordova-plugin-ionic-webview" spec="^2.0.0"/>
   <plugin name="cordova-plugin-ionic-keyboard" spec="^2.1.3"/>
@@ -97,6 +97,7 @@
   </plugin>
   <plugin name="cordova-plugin-google-analytics" spec="1.8.6"/>
   <plugin name="cordova-plugin-app-preferences" spec="0.99.3"/>
+  <plugin name="cordova-plugin-appconfig" spec="1.1.4"/>
   <engine name="browser" spec="^5.0.4"/>
   <engine name="ios" spec="4.5.5"/>
   <hook src="buildScripts/increment-build-number.js" type="before_prepare"/>
