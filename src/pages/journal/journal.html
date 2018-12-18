@@ -17,7 +17,26 @@
     </ion-card-content>
     <ion-list>
       <ion-card *ngFor="let s of journalSlot">
-         <h3>{{s | json}}</h3>
+        <h3>{{s | json}}</h3>
+        <ion-row align-items-center>
+          <ion-col col-2>
+            <journal-time [time]="s.slotDetail.start"></journal-time>
+          </ion-col>
+          <ion-col col-5>
+            <journal-candidate 
+              [title]="s.booking.candidate.candidateName.title" 
+              [firstName]="s.booking.candidate.candidateName.firstName" 
+              [lastName]="s.booking.candidate.candidateName.lastName"
+              [testCategory]="s.vehicleSlotType">
+            </journal-candidate>
+          </ion-col>
+          <ion-col col-2>
+            <!-- <journal-test-details [testCentreName]="s.testCentre.centreName"></journal-test-details> -->
+          </ion-col>
+          <ion-col col-2>
+            Activity
+          </ion-col>
+        </ion-row>
       </ion-card>
     </ion-list>
   </ion-card>

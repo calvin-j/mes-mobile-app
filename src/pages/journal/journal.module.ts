@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { IonicPageModule } from 'ionic-angular';
-import { ComponentsModule } from '../../components/components.module';
 import { JournalPage } from './journal';
+import { JournalComponentsModule } from './journal-components/journal-components.module';
 
 @NgModule({
   declarations: [
@@ -9,7 +9,7 @@ import { JournalPage } from './journal';
   ],
   imports: [
     IonicPageModule.forChild(JournalPage),
-    ComponentsModule,
+    JournalComponentsModule,
   ],
 })
 export class JournalPageModule {}
