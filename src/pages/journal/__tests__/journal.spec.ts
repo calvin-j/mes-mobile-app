@@ -8,6 +8,7 @@ import { JournalPage } from '../journal';
 import { DebugElement } from '@angular/core';
 import { JournalProvider } from '../../../providers/journal/journal';
 import { JournalServiceMock } from '../../../providers/journal/__mocks__/journal.mock';
+import { JournalComponentsModule } from '../journal-components/journal-components.module';
 
 describe('JournalPage', () => {
   let fixture: ComponentFixture<JournalPage>;
@@ -16,7 +17,7 @@ describe('JournalPage', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [JournalPage],
-      imports: [IonicModule, AppModule],
+      imports: [IonicModule, AppModule, JournalComponentsModule],
       providers: [
         {
           provide: NavController,
