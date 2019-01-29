@@ -1,0 +1,3 @@
+[submodule "plugins"]
+	path = plugins
+	url = git@github.com:calvin-j/mobile-app-cordova-plugins.git
