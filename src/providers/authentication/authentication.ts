@@ -54,6 +54,9 @@ export class AuthenticationProvider {
 
   public getAuthenticationToken = async (): Promise<string> => {
     const response = await this.aquireTokenSilently();
+    console.log('######### TOKEN ########');
+    console.log(response.accessToken);
+    console.log('######## END TOKEN #########');
     return response.accessToken;
   }
 
