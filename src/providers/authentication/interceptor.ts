@@ -20,6 +20,12 @@ export class AuthInterceptor implements HttpInterceptor {
     private platform: Platform,
     private authService: AuthenticationProvider) {}
 
+  /**
+   * Intercepts HTTP requests adding the authentication token
+   * @param  {HttpRequest<any>} request
+   * @param  {HttpHandler} next
+   * @returns Observable
+   */
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
     if (!this.platform.is('ios')) return next.handle(request);
 
