@@ -11,7 +11,12 @@ export const initialState: JournalModel = {
   slots: {},
   selectedDate: DateTime.now().format('YYYY-MM-DD'),
 };
-
+/**
+ * Journal reducer
+ * @param  {} state=initialState
+ * @param  {journalActions.Types} action
+ * @returns JournalModel
+ */
 export function journalReducer(state = initialState, action: journalActions.Types): JournalModel {
   switch (action.type) {
     case journalActions.LOAD_JOURNAL:

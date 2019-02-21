@@ -12,7 +12,9 @@ export class TestCategoryIconComponent {
   categoryIcons = testCategoryIcons;
 
   constructor() { }
-
+  /**
+   * @returns string
+   */
   getCategoryIcon(): string {
     return this.categoryIcons[this.category as TestCategory];
   }

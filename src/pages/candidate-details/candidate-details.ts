@@ -54,7 +54,9 @@ export class CandidateDetailsPage extends BasePageComponent implements OnInit, O
     this.slotId = navParams.get('slotId');
     this.slotChanged = navParams.get('slotChanged');
   }
-
+  /**
+   * @returns void
+   */
   ngOnInit(): void {
 
     this.store$.dispatch(new ClearChangedSlot(this.slotId));
@@ -96,19 +98,27 @@ export class CandidateDetailsPage extends BasePageComponent implements OnInit, O
     }
     this.store$.dispatch(new ClearChangedSlot(this.slotId));
   }
-
+  /**
+   * @returns void
+   */
   ngOnDestroy(): void {
     this.subscription.unsubscribe();
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new CandidateDetailsViewDidEnter(this.slotId));
   }
-
+  /**
+   * @returns void
+   */
   handleDoneButtonClick(): void {
     this.navController.pop();
   }
-
+  /**
+   * @returns string
+   */
   getCategoryIcon(): string {
     return this.testCategoryIcons[this.testCategory];
   }
