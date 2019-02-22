@@ -22,7 +22,9 @@ export class DebriefPage extends BasePageComponent {
   ) {
     super(platform, navCtrl, authenticationProvider);
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new DebriefViewDidEnter());
   }

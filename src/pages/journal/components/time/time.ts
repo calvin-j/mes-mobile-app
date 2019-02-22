@@ -11,7 +11,8 @@ export class TimeComponent implements OnInit {
 
   @Input()
   testComplete: boolean;
-
+  /**
+   */
   ngOnInit() {
     this.testComplete = true; // TODO pick up testComplete from JSON when available
   }

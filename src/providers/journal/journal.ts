@@ -12,7 +12,9 @@ export class JournalProvider {
     public urlProvider: UrlProvider,
     public authProvider: AuthenticationProvider,
   ) {}
-
+  /**
+   * @param  {Date} lastRefreshed
+   */
   getJournal(lastRefreshed: Date) {
     const staffNumber = this.authProvider.getEmployeeId();
     const journalUrl = this.urlProvider.getPersonalJournalUrl(staffNumber);

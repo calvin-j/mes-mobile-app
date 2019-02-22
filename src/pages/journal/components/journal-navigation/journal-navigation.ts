@@ -24,7 +24,9 @@ export class JournalNavigationComponent implements OnInit {
   pageState: JournalNavigationPageState;
 
   constructor(private store$: Store<StoreModel>) {}
-
+  /**
+   * @returns void
+   */
   ngOnInit(): void {
     this.pageState = {
       selectedDate$: this.store$.pipe(
@@ -46,11 +48,15 @@ export class JournalNavigationComponent implements OnInit {
       ),
     };
   }
-
+  /**
+   * @returns void
+   */
   onPreviousDayClick(): void {
     this.store$.dispatch(new SelectPreviousDay());
   }
-
+  /**
+   * @returns void
+   */
   onNextDayClick(): void {
     this.store$.dispatch(new SelectNextDay());
   }

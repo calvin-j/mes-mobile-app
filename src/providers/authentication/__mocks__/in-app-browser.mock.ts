@@ -9,21 +9,36 @@ export class InAppBrowserMock {
 }
 
 export class InAppBrowserObjectMock {
-
+  /**
+   * @returns void
+   */
   show(): void {}
-
+  /**
+   * @returns void
+   */
   close(): void { }
-
+  /**
+   * @returns void
+   */
   hide(): void { }
-
+  /**
+   * @param  {object} script
+   * @returns Promise
+   */
   executeScript(script: object): Promise<any> {
     return new Promise((resolve) => { });
   }
-
+  /**
+   * @param  {object} css
+   * @returns Promise
+   */
   insertCSS(css: object): Promise<any> {
     return new Promise((resolve) => { });
   }
-
+  /**
+   * @param  {string} event
+   * @returns Observable
+   */
   on(event: string): Observable<InAppBrowserEventMock> {
     return new EmptyObservable();
   }

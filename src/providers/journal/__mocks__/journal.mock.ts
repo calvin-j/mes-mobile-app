@@ -406,7 +406,9 @@ export class JournalProviderMock {
     ],
     nonTestActivities: [],
   };
-
+  /**
+   * @returns Observable
+   */
   public getJournal(): Observable<ExaminerWorkSchedule> {
     return of(this.mockJournal);
   }

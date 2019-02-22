@@ -21,7 +21,9 @@ export class NetworkStateProvider {
       this.networkStatus$.next(status);
     });
   }
-
+  /**
+   * @returns void
+   */
   private initialiseNetworkEvents(): void {
     this.network.onDisconnect().subscribe(() => {
       console.log('Offline fired');
@@ -35,16 +37,22 @@ export class NetworkStateProvider {
       this.updateNetworkStatus(ConnectionStatus.ONLINE);
     });
   }
-
+  /**
+   * @param  {ConnectionStatus} status
+   */
   private updateNetworkStatus(status: ConnectionStatus) {
     console.log('Updating network status with', status);
     this.networkStatus$.next(status);
   }
-
+  /**
+   * @returns Observable
+   */
   public onNetworkChange(): Observable<ConnectionStatus> {
     return this.networkStatus$.asObservable();
   }
-
+  /**
+   * @returns ConnectionStatus
+   */
   public getNetworkState(): ConnectionStatus {
     return this.networkStatus$.getValue();
   }

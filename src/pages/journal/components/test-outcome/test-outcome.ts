@@ -20,7 +20,8 @@ export class TestOutcomeComponent {
     private store$: Store<StoreModel>,
     public navController: NavController,
   ) {}
-
+  /**
+   */
   startTest() {
     this.store$.dispatch(new TestOutcomeStartTest());
     this.navController.push('WaitingRoomPage');

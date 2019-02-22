@@ -15,7 +15,11 @@ export class SlotProvider {
   constructor(
     private store$: Store<StoreModel>,
     public appConfigProvider: AppConfigProvider) {}
-
+  /**
+   * @param  {{[k:string]:SlotItem[]}} slots
+   * @param  {ExaminerWorkSchedule} newJournal
+   * @returns SlotItem
+   */
   detectSlotChanges(slots: {[k: string]: SlotItem[]}, newJournal: ExaminerWorkSchedule): SlotItem[] {
     const newSlots = flatten([
       newJournal.testSlots || [],

@@ -18,7 +18,9 @@ export class AnalyticsProvider implements IAnalyticsProvider {
     public platform: Platform,
     private device: Device,
   ) { }
-
+  /**
+   * @returns Promise
+   */
   initialiseAnalytics = (): Promise<any> =>
     new Promise((resolve) => {
       this.googleAnalyticsKey = this.appConfig.getAppConfig().googleAnalyticsId;
@@ -30,7 +32,9 @@ export class AnalyticsProvider implements IAnalyticsProvider {
       });
       resolve();
     })
-
+  /**
+   * @returns void
+   */
   enableExceptionReporting():void {
     this.platform.ready().then(() => {
       this.ga
@@ -43,7 +47,10 @@ export class AnalyticsProvider implements IAnalyticsProvider {
         .catch(error => console.log(`enableExceptionReporting: ${this.analyticsStartupError}`, error));
     });
   }
-
+  /**
+   * @param  {string} name
+   * @returns void
+   */
   setCurrentPage(name: string):void {
     this.platform.ready().then(() => {
       this.ga
@@ -57,7 +64,13 @@ export class AnalyticsProvider implements IAnalyticsProvider {
         .catch(error => console.log('Error starting Google Analytics', error));
     });
   }
-
+  /**
+   * @param  {string} category
+   * @param  {string} event
+   * @param  {string} label?
+   * @param  {any} params?
+   * @returns void
+   */
   logEvent(category: string, event: string, label?: string, params?: any):void {
     this.platform.ready().then(() => {
       this.ga
@@ -70,7 +83,11 @@ export class AnalyticsProvider implements IAnalyticsProvider {
         .catch(error => console.log(`logEvent: ${this.analyticsStartupError}`, error));
     });
   }
-
+  /**
+   * @param  {number} key
+   * @param  {string} value
+   * @returns void
+   */
   addCustomDimension(key: number, value: string):void {
     this.ga
     .startTrackerWithId(this.googleAnalyticsKey)
@@ -81,11 +98,19 @@ export class AnalyticsProvider implements IAnalyticsProvider {
     })
     .catch(error => console.log(`addCustomDimension: ${this.analyticsStartupError}`, error));
   }
-
+  /**
+   * @param  {string} type
+   * @param  {string} message
+   * @returns void
+   */
   logError(type: string, message: string):void {
     this.logEvent(AnalyticsEventCategories.ERROR, type, message);
   }
-
+  /**
+   * @param  {string} message
+   * @param  {boolean} fatal
+   * @returns void
+   */
   logException(message: string, fatal: boolean):void {
     this.ga
     .startTrackerWithId(this.googleAnalyticsKey)
@@ -96,7 +121,10 @@ export class AnalyticsProvider implements IAnalyticsProvider {
     })
     .catch(error => console.log(`logException: ${this.analyticsStartupError}`, error));
   }
-
+  /**
+   * @param  {string} userId
+   * @returns void
+   */
   setUserId(userId: string):void {
     this.ga
     .startTrackerWithId(this.googleAnalyticsKey)
@@ -107,12 +135,18 @@ export class AnalyticsProvider implements IAnalyticsProvider {
     })
     .catch(error => console.log(`setUserId: ${this.analyticsStartupError}`, error));
   }
-
+  /**
+   * @param  {string} userDate
+   * @returns number
+   */
   getDiffDays(userDate: string): number {
     const today = new DateTime();
     return today.daysDiff(userDate);
   }
-
+  /**
+   * @param  {string} userDate
+   * @returns string
+   */
   getDescriptiveDate(userDate: string): string {
     let ret: string;
 

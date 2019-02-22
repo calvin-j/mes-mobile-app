@@ -20,15 +20,22 @@ export class ScreenOrientationMock  {
   };
 
   type: string;
-
+  /**
+   * @returns Observable
+   */
   onChange(): Observable<void> {
     return;
   }
-
+  /**
+   * @param  {string} orientation
+   * @returns Promise
+   */
   lock(orientation: string): Promise<any> {
     return;
   }
-
+  /**
+   * @returns void
+   */
   unlock(): void {
   }
 }

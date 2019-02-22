@@ -69,7 +69,9 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
     this.analytics.initialiseAnalytics().then(() => console.log('journal analytics initialised'));
     this.employeeId = this.authenticationProvider.getEmployeeId();
   }
-
+  /**
+   * @returns void
+   */
   ngOnInit(): void {
 
     this.pageState = {
@@ -107,39 +109,53 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
     );
     this.subscription = merged$.subscribe();
   }
-
+  /**
+   * @returns void
+   */
   ngOnDestroy(): void {
     // Using .merge helps with unsubscribing
     this.subscription.unsubscribe();
   }
-
+  /**
+   */
   ionViewWillEnter() {
     super.ionViewWillEnter();
     this.loadJournalManually();
     this.setupPolling();
     return true;
   }
-
+  /**
+   */
   ionViewWillLeave() {
     this.store$.dispatch(new journalActions.StopPolling());
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new journalActions.JournalViewDidEnter());
   }
-
+  /**
+   */
   loadJournalManually() {
     this.store$.dispatch(new journalActions.LoadJournal());
   }
-
+  /**
+   */
   setupPolling() {
     this.store$.dispatch(new journalActions.SetupPolling());
   }
-
+  /**
+   * @param  {string} selectedDate
+   * @returns void
+   */
   setSelectedDate = (selectedDate: string): void => {
     this.selectedDate = selectedDate;
   }
-
+  /**
+   * @param  {boolean} isLoading
+   * @returns void
+   */
   handleLoadingUI = (isLoading: boolean): void => {
     if (isLoading) {
       this.loadingSpinner = this.loadingController.create({
@@ -155,13 +171,18 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
       this.loadingSpinner = null;
     }
   }
-
+  /**
+   * @param  {MesError} error
+   * @returns void
+   */
   showError = (error: MesError): void => {
     if (error === undefined || error.message === '') return;
     this.createToast(error.message);
     this.toast.present();
   }
-
+  /**
+   * @param  {any} emission
+   */
   private createSlots = (emission: any) => {
     if (!Array.isArray(emission)) return;
 
@@ -181,7 +202,9 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
       lastLocation = slot.slotData.testCentre.centreName;
     }
   }
-
+  /**
+   * @param  {string} errorMessage
+   */
   private createToast = (errorMessage: string) => {
     // TODO: This is just a temporary way to display the error.
     // Initiate a conversation with the team about how to handle errors.
@@ -198,20 +221,26 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
       this.store$.dispatch(new journalActions.UnsetError());
     });
   }
-
+  /**
+   * @param  {Refresher} refresher
+   */
   public pullRefreshJournal = (refresher: Refresher) => {
     this.loadJournalManually();
     this.pageRefresher = refresher;
   }
-
+  /**
+   */
   public refreshJournal = () => {
     this.loadJournalManually();
   }
-
+  /**
+   * @param  {} $event
+   */
   gotoWaitingRoom($event) {
     console.log('going to waiting room with ', $event);
   }
-
+  /**
+   */
   logout() {
     this.store$.dispatch(new journalActions.UnloadJournal());
     super.logout();

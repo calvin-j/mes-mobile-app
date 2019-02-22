@@ -18,7 +18,9 @@ export class ActivitySlotComponent implements SlotComponent {
   showLocation: boolean;
 
   constructor() {}
-
+  /**
+   * @returns string
+   */
   formatActivityCode(): string {
     const activityCode = this.slot.activityCode;
     if (isNil(activityCode)) {
@@ -26,7 +28,9 @@ export class ActivitySlotComponent implements SlotComponent {
     }
     return activityCode.replace(/^\w*0/, '');
   }
-
+  /**
+   * @returns string
+   */
   public getTitle(): string {
     const activityCode = this.slot.activityCode;
     const matchingActivity: Activity = activities.find(a => a.activityCode === activityCode);
@@ -35,7 +39,9 @@ export class ActivitySlotComponent implements SlotComponent {
     }
     return 'Unknown';
   }
-
+  /**
+   * @returns boolean
+   */
   public isTravelSlot(): boolean {
     return this.slot.activityCode === '091';
   }

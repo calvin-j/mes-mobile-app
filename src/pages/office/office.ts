@@ -22,11 +22,14 @@ export class OfficePage extends BasePageComponent {
   ) {
     super(platform, navCtrl, authenticationProvider);
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new OfficeViewDidEnter());
   }
-
+  /**
+   */
   popToRoot() {
     this.navCtrl.popToRoot();
   }

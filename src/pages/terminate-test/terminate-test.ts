@@ -22,11 +22,14 @@ export class TerminateTestPage extends BasePageComponent {
   ) {
     super(platform, navCtrl, authenticationProvider);
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new TerminateTestViewDidEnter());
   }
-
+  /**
+   */
   popToRoot() {
     this.navCtrl.popToRoot();
   }

@@ -22,7 +22,9 @@ export class TestReportPage extends BasePageComponent {
   ) {
     super(platform, navCtrl, authenticationProvider);
   }
-
+  /**
+   * @returns void
+   */
   ionViewDidEnter(): void {
     this.store$.dispatch(new TestReportViewDidEnter());
   }

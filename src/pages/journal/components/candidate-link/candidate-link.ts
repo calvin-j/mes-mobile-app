@@ -24,7 +24,8 @@ export class CandidateLinkComponent {
 
   constructor(public navController: NavController) {
   }
-
+  /**
+   */
   navigateToCandidateDetails() {
     this.navController.push('CandidateDetailsPage', { slotId: this.slotId, slotChanged: this.slotChanged });
   }

@@ -20,24 +20,32 @@ export class TestSlotComponent implements SlotComponent {
   showLocation: boolean;
 
   constructor(public screenOrientation: ScreenOrientation) {}
-
+  /**
+   * @returns boolean
+   */
   isIndicatorNeededForSlot(): boolean {
     const specialNeeds: boolean = this.isSpecialNeedsSlot();
     const checkNeeded: boolean = this.slot.booking.application.entitlementCheck || false;
 
     return specialNeeds || checkNeeded;
   }
-
+  /**
+   * @returns boolean
+   */
   isSpecialNeedsSlot(): boolean {
     const specialNeeds = get(this.slot, 'booking.application.specialNeeds', '');
     return !isNil(specialNeeds) && specialNeeds.length > 0;
   }
-
+  /**
+   * @returns boolean
+   */
   isPortrait() : boolean {
     return this.screenOrientation.type === this.screenOrientation.ORIENTATIONS.PORTRAIT_PRIMARY ||
       this.screenOrientation.type === this.screenOrientation.ORIENTATIONS.PORTRAIT;
   }
-
+  /**
+   * @returns boolean
+   */
   showVehicleDetails(): boolean {
     return vehicleDetails[this.slot.booking.application.testCategory as TestCategory];
   }
