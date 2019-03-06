@@ -2,9 +2,11 @@ Feature: Journal
 
    Scenario: Examiner views candidate details
     Given I am on the journal page as "mobexaminer1"
+      And I execute accessibility reporting for "journal"
      When I view candidate details for "Mrs Jane Doe"
      Then I should see the "Candidate Details" page
       And I should see the "Driver number" contains "DOEXX625220A99HC"
+      And I execute accessibility reporting for "candidate_details"
 
    Scenario: Examiner is informed of a special needs slot
     Given I am on the journal page as "mobexaminer1"
@@ -23,3 +25,4 @@ Feature: Journal
      When I refresh the journal
      And I start the test for "Miss Florence Pearson"
      Then I should see the "Waiting Room" page
+     And I execute accessibility reporting for "waiting_room"

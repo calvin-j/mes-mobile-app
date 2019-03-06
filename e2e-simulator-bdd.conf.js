@@ -35,5 +35,11 @@ exports.config = {
     if (!fs.existsSync(dir)) {
       fs.mkdirSync(dir);
     }
+
+    var axedir = './accessibility-reports';
+
+    if (!fs.existsSync(axedir)) {
+      fs.mkdirSync(axedir);
+    }
   }
 };

@@ -13,6 +13,9 @@ const chaiAsPromised = require('chai-as-promised');
 chai.use(chaiAsPromised);
 const expect = chai.expect;
 
+const axeBuilder = require('axe-webdriverjs');
+const axeReports = require('axe-reports');
+
 // We need this much timeout for the login process to complete
 setDefaultTimeout(TEST_CONFIG.DEFAULT_TIMEOUT);
 
@@ -38,6 +41,10 @@ Given('I am not logged in', () => {
 
 When('I launch the mobile app', () => {
   // Application is already launched by framework
+});
+
+When('I execute accessibility reporting for {string}', (pageName) => {
+  runAxe(pageName);
 });
 
 Then('I should see the Microsoft login page', () => {
@@ -161,3 +168,18 @@ export const getElement = (elementBy) => {
   browser.wait(ExpectedConditions.presenceOf(element(elementBy)));
   return element(elementBy);
 };
+
+/**
+ * Audits page source against aXe: https://github.com/dequelabs/axe-core
+ *
+ * @param {String} The name of the page
+ * @private
+ */
+function runAxe(pageName) {
+  axeBuilder(browser.driver).analyze((results) => {
+    console.log(`No accessibility violations: ${results.violations.length}`);
+    axeReports.processResults(results, 'csv', `accessibility-reports/${pageName}`, true);
+  });
+  // Messy, need to give it enough time to write the file
+  browser.sleep(3000);
+}
