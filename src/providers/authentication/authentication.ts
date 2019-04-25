@@ -126,7 +126,10 @@ export class AuthenticationProvider {
           try {
             this.successfulLogin(authResponse);
           } catch (err) {
-            reject(err);
+            reject({
+              err,
+              accessToken: this.jwtDecode(authResponse.accessToken),
+            });
           }
           resolve(this.jwtDecode(authResponse.accessToken));
         })

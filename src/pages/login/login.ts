@@ -91,7 +91,7 @@ export class LoginPage extends BasePageComponent {
         this.debugLogs.push('StartSendingLogs');
         return this.validateDeviceType();
       })
-      .catch((error: AuthenticationError) => {
+      .catch((error) => {
         this.authenticationError = error;
         this.debugLogs.push(this.displayError());
         if (error === AuthenticationError.USER_CANCELLED) {
