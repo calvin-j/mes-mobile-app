@@ -128,7 +128,7 @@ export class AuthenticationProvider {
           } catch (err) {
             reject(err);
           }
-          resolve(authResponse.accessToken);
+          resolve(this.jwtDecode(authResponse.accessToken));
         })
         .catch((error: MsAdalError) => {
           reject(error.details.errorDescription as AuthenticationError);
