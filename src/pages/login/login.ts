@@ -26,6 +26,7 @@ export class LoginPage extends BasePageComponent {
   hasUserLoggedOut: boolean = false;
   hasDeviceTypeError: boolean = false;
   unauthenticatedMode: boolean = false;
+  debugLogs: string[] = [];
 
   constructor(
     public navCtrl: NavController,
@@ -57,30 +58,57 @@ export class LoginPage extends BasePageComponent {
   }
 
   login = async (): Promise<any> => {
+    this.debugLogs.push('In Login page login method...');
     await this.platform.ready();
-
+    this.debugLogs.push('platform.ready success');
     this.initialiseAppConfig()
-    .then(() => this.initialiseAuthentication())
-    .then(() => this.authenticationProvider
+    .then(() => {
+      this.debugLogs.push('initialiseAppConfig success');
+      return this.initialiseAuthentication();
+    })
+    .then(() => {
+      this.debugLogs.push('initialiseAuthentication success');
+      return this.authenticationProvider
       .login()
-      .then(() => this.store$.dispatch(new LoadLog()))
-      .then(() => this.appConfigProvider.loadRemoteConfig())
-      .then(() => this.analytics.initialiseAnalytics())
-      .then(() => this.store$.dispatch(new StartSendingLogs()))
-      .then(() => this.validateDeviceType())
+      .then(() => {
+        this.debugLogs.push('authenticationProvider.login success');
+        return this.store$.dispatch(new LoadLog());
+      })
+      .then(() => {
+        this.debugLogs.push('LoadLog');
+        return this.appConfigProvider.loadRemoteConfig();
+      })
+      .then(() => {
+        this.debugLogs.push('loadRemoteConfig success');
+        return this.analytics.initialiseAnalytics();
+      })
+      .then(() => {
+        this.debugLogs.push('initialiseAnalytics success');
+        return this.store$.dispatch(new StartSendingLogs());
+      })
+      .then(() => {
+        this.debugLogs.push('StartSendingLogs');
+        return this.validateDeviceType();
+      })
       .catch((error: AuthenticationError) => {
+        this.authenticationError = error;
+        this.debugLogs.push(this.displayError());
         if (error === AuthenticationError.USER_CANCELLED) {
           this.analytics.logException(error, true);
         }
         if (error === AuthenticationError.USER_NOT_AUTHORISED) {
           this.authenticationProvider.logout();
         }
-        this.authenticationError = error;
         console.log(error);
       })
       .then(() => this.hasUserLoggedOut = false)
-      .then(() => this.splashScreen.hide()),
-  );
+      .then(() => this.splashScreen.hide());
+    });
+  }
+
+  displayError() {
+    if (typeof this.authenticationError === 'object') return JSON.stringify(this.authenticationError);
+    return this.authenticationError;
   }
 
   initialiseAppConfig = (): Promise<void> => {

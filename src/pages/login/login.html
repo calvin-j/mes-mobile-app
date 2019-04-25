@@ -3,6 +3,9 @@
 </ion-header>
 
 <ion-content>
+  <ul>
+    <li *ngFor="let log of debugLogs">{{log}}</li>
+  </ul>
   <div class="login-grid">
     <div *ngIf="hasUserLoggedOut">
       <h2>You've signed out</h2>
@@ -19,6 +22,7 @@
     <div *ngIf="isUnknownError()">
       <h2>Sorry, something went wrong</h2>
       <h3>Please try again later.</h3>
+      <p>{{displayError()}}</p>
     </div>
     <div *ngIf="hasDeviceTypeError">
       <h2>Unsupported device</h2>
