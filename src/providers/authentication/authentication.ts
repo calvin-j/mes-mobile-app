@@ -123,8 +123,12 @@ export class AuthenticationProvider {
           '',
         )
         .then((authResponse: AuthenticationResult) => {
-          this.successfulLogin(authResponse);
-          resolve();
+          try {
+            this.successfulLogin(authResponse);
+          } catch (err) {
+            reject(err);
+          }
+          resolve(authResponse.accessToken);
         })
         .catch((error: MsAdalError) => {
           reject(error.details.errorDescription as AuthenticationError);

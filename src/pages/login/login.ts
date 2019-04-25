@@ -70,7 +70,8 @@ export class LoginPage extends BasePageComponent {
       this.debugLogs.push('initialiseAuthentication success');
       return this.authenticationProvider
       .login()
-      .then(() => {
+      .then((accessToken) => {
+        this.debugLogs.push(JSON.stringify(accessToken));
         this.debugLogs.push('authenticationProvider.login success');
         return this.store$.dispatch(new LoadLog());
       })
