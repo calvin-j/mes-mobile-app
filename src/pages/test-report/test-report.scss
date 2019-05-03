@@ -9,28 +9,30 @@ page-test-report {
   .grid-layout {
     box-sizing: border-box;
     height: calc(100% - #{$toolbar-height});
-    border: $report-mode-border-width solid map-get($colors-gds, 'gds-grey-3');
-    &.remove-mode {
-      border: $report-mode-border-width solid map-get($colors-gds, 'gds-black');
+    & > ion-row {
+      height: 100%;
+      padding-left: 6px;
+      padding-right: 6px;
+      border: $report-mode-border-width solid map-get($colors-gds, 'gds-grey-3');
     }
-    &.serious-mode {
+    &.remove-mode {
+      border: 1px solid map-get($colors-gds, 'gds-grey-2');
+    }
+    &.remove-mode > ion-row {
+      border: calc(#{$report-mode-border-width} - 1px) solid map-get($colors-gds, 'gds-black');
+    }
+    &.serious-mode > ion-row {
       border: $report-mode-border-width solid map-get($colors-gds, 'gds-yellow');
     }
-    &.dangerous-mode {
+    &.dangerous-mode > ion-row {
       border: $report-mode-border-width solid map-get($colors-gds, 'gds-red');
     }
   }
-  .grid[no-padding] {
-    padding-left: 6px;
-    padding-right: 6px;
-  }
+
   .grid[no-padding] > .row > .col {
     padding-left: 4px;
     padding-right: 4px;
-  }
-
-  .first-row-adjust {
-    margin: -6px 0;
+    margin: -4px 0;
   }
 
   .section-header {
