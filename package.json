@@ -53,6 +53,7 @@
     "@ionic-native/app-version": "^4.20.0",
     "@ionic-native/core": "~4.17.0",
     "@ionic-native/device": "^4.18.0",
+    "@ionic-native/firebase": "^4.20.0",
     "@ionic-native/google-analytics": "^4.20.0",
     "@ionic-native/in-app-browser": "^4.18.0",
     "@ionic-native/insomnia": "^4.20.0",
@@ -74,6 +75,7 @@
     "cordova-plugin-compat": "^1.2.0",
     "cordova-plugin-device": "^2.0.2",
     "cordova-plugin-device-authentication": "git+https://github.com/dvsa/cordova-plugin-device-authentication.git",
+    "cordova-plugin-firebase": "2.0.5",
     "cordova-plugin-google-analytics": "^1.8.6",
     "cordova-plugin-inappbrowser": "^3.0.0",
     "cordova-plugin-insomnia": "~4.3.0",
@@ -109,6 +111,7 @@
     "@dvsa/mes-test-schema": "^1.0.21",
     "@ionic-native-mocks/device": "^2.0.12",
     "@ionic-native-mocks/secure-storage": "^2.0.12",
+    "@ionic-native-mocks/firebase": "^2.0.12",
     "@ionic/app-scripts": "^3.2.3",
     "@ngrx/store-devtools": "^5.2.0",
     "@types/hammerjs": "^2.0.36",
@@ -178,7 +181,9 @@
       "cordova-plugin-insomnia": {},
       "cordova-plugin-secure-storage": {},
       "cordova-plugin-device-authentication": {},
-      "cordova-plugin-appconfig": {}
+      "cordova-plugin-appconfig": {},
+      "cordova-plugin-firebase": {},
+      "cordova-plugin-firebase-analytics": {}
     },
     "platforms": [
       "ios"

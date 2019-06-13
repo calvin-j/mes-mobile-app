@@ -2,6 +2,7 @@ import { TestBed, ComponentFixture, async } from '@angular/core/testing';
 import { NO_ERRORS_SCHEMA } from '@angular/core';
 import { Platform } from 'ionic-angular';
 import { StatusBar } from '@ionic-native/status-bar';
+import { Firebase } from '@ionic-native/firebase';
 import { StoreModule, Store } from '@ngrx/store';
 import { StatusBarMock, PlatformMock } from 'ionic-mocks';
 
@@ -13,6 +14,7 @@ import { DataStoreProvider } from '../../providers/data-store/data-store';
 import { DataStoreProviderMock } from '../../providers/data-store/__mocks__/data-store.mock';
 import { SecureStorage } from '@ionic-native/secure-storage';
 import { SecureStorageMock } from '@ionic-native-mocks/secure-storage';
+import { FirebaseMock } from '@ionic-native-mocks/firebase';
 import { TranslateService } from 'ng2-translate/ng2-translate';
 import { translateServiceMock } from '../../shared/__mocks__/translate';
 import { LOGIN_PAGE } from '../../pages/page-names.constants';
@@ -33,6 +35,7 @@ describe('App', () => {
       providers: [
         { provide: Platform, useFactory: () => PlatformMock.instance() },
         { provide: StatusBar, useFactory: () => StatusBarMock.instance() },
+        { provide: Firebase, useClass: FirebaseMock },
         { provide: DataStoreProvider, useClass: DataStoreProviderMock },
         { provide: SecureStorage, useClass: SecureStorageMock },
         { provide: TranslateService, useValue: translateServiceMock },

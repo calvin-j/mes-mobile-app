@@ -22,6 +22,7 @@ import { UrlProvider } from '../providers/url/url';
 import { Network } from '@ionic-native/network';
 import { NetworkStateProvider } from '../providers/network-state/network-state';
 import { GoogleAnalytics } from '@ionic-native/google-analytics';
+import { Firebase } from '@ionic-native/firebase';
 import { Device } from '@ionic-native/device';
 import { LogsProvider } from '../providers/logs/logs';
 import { AppInfoModule } from '../modules/app-info/app-info.module';
@@ -80,6 +81,7 @@ export function createTranslateLoader(http: Http) {
     Network,
     NetworkStateProvider,
     GoogleAnalytics,
+    Firebase,
     Device,
     AppConfigProvider,
     AuthenticationProvider,
