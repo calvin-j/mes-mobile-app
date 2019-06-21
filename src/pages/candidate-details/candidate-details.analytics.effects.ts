@@ -7,9 +7,8 @@ import { StoreModel } from '../../shared/models/store.model';
 import { getJournalState } from '../journal/journal.reducer';
 import { AnalyticsProvider } from '../../providers/analytics/analytics';
 import {
-    AnalyticsDimensionIndices,
     AnalyticsScreenNames,
-    AnalyticsEventCategories,
+    AnalyticsParams,
     AnalyticsEvents,
 } from '../../providers/analytics/analytics.model';
 
@@ -53,10 +52,12 @@ export class CandidateDetailsAnalyticsEffects {
         const candidateCheck = isCandidateCheckNeeded(slot);
         const candidateId = getCandidateId(slot);
 
-        this.analytics.addCustomDimension(AnalyticsDimensionIndices.CANDIDATE_ID, candidateId);
-        this.analytics.addCustomDimension(
-          AnalyticsDimensionIndices.CANDIDATE_WITH_SPECIAL_NEEDS, specNeeds ? '1' : '0');
-        this.analytics.addCustomDimension(AnalyticsDimensionIndices.CANDIDATE_WITH_CHECK, candidateCheck ? '1' : '0');
+        this.analytics.logEvent(AnalyticsEvents.SLOT_VIEWED, {
+          [AnalyticsParams.SLOT_ID]: action.slotId.toString(),
+          [AnalyticsParams.CANDIDATE_ID]: candidateId,
+          [AnalyticsParams.CANDIDATE_WITH_SPECIAL_NEEDS]: specNeeds ? '1' : '0',
+          [AnalyticsParams.CANDIDATE_WITH_CHECK]: candidateCheck ? '1' : '0',
+        });
         this.analytics.setCurrentPage(AnalyticsScreenNames.CANDIDATE_DETAILS);
         return of();
       }),
@@ -66,10 +67,9 @@ export class CandidateDetailsAnalyticsEffects {
     slotChangeViewed$ = this.actions$.pipe(
       ofType(CANDIDATE_DETAILS_SLOT_CHANGE_VIEWED),
       switchMap((action: CandidateDetailsSlotChangeViewed) => {
-        this.analytics.logEvent(
-          AnalyticsEventCategories.JOURNAL,
-          AnalyticsEvents.SLOT_CHANGE_VIEWED,
-          action.slotId.toString());
+        this.analytics.logEvent(AnalyticsEvents.SLOT_CHANGE_VIEWED, {
+          [AnalyticsParams.SLOT_ID]: action.slotId.toString(),
+        });
         return of();
       }),
     );

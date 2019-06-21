@@ -9,8 +9,9 @@ export interface IAnalyticsProvider {
 
   logException(message: string, fatal: boolean): void;
 
-  setUserId(userId: string): void;
-  initialiseAnalytics(): Promise<any>;
+  setDeviceId(): void;
+  setUserId(): void;
+  initialiseAnalytics(): void;
 
 }
 
@@ -33,31 +34,50 @@ export enum AnalyticsScreenNames {
     BACK_TO_OFFICE = 'back to office screen',
   }
 
-export enum AnalyticsEventCategories {
-    CLICK = 'click',
-    LIFECYCLE = 'lifecycle',
-    ERROR = 'error',
-    JOURNAL = 'journal',
-    AUTHENTICATION = 'authentication',
-  }
-
 export enum AnalyticsEvents {
-    START_TEST = 'start test',
-    END_TEST = 'end test',
-    APP_LOAD = 'app load',
-    SLOT_CHANGED = 'slot changed',
-    SLOT_CHANGE_VIEWED = 'slot change viewed',
+    START_TEST = 'start_test',
+    END_TEST = 'end_test',
+    APP_LOAD = 'app_load',
+    SLOT_CHANGED = 'slot_changed',
+    SLOT_CHANGE_VIEWED = 'slot_change_viewed',
+    SLOT_VIEWED = 'slot_viewed',
     NAVIGATION = 'navigation',
-    REFRESH_JOURNAL = 'refresh journal',
+    REFRESH_JOURNAL = 'refresh_journal',
     LOGIN = 'login',
+    JOURNAL_NAVIGATION = 'journal_navigation',
+    JOURNAL_SLOT_CHANGED = 'journal_slot_changed',
+    JOURNAL_SLOT_CHANGE_VIEWED = 'journal_slot_change_viewed',
+    ADD_FAULT = 'add_fault',
+    REMOVE_FAULT = 'remove_fault',
+    ERROR = 'error',
   }
 
-export enum AnalyticsDimensionIndices {
-    DEVICE_ID = 1,
-    JOURNAL_DAYS_FROM_TODAY = 2,
-    CANDIDATE_WITH_SPECIAL_NEEDS = 3,
-    CANDIDATE_WITH_CHECK = 4,
-    CANDIDATE_ID= 5,
+export enum AnalyticsParams {
+    START_TEST = 'start_test',
+    END_TEST = 'end_test',
+    APP_LOAD = 'app_load',
+    SLOT_CHANGED = 'slot_changed',
+    SLOT_CHANGE_VIEWED = 'slot_change_viewed',
+    NAVIGATION = 'navigation',
+    REFRESH_JOURNAL = 'refresh_journal',
+    LOGIN = 'login',
+    JOURNAL_NAVIGATION = 'journal_navigation',
+    JOURNAL_DATE = 'journal_date',
+    JOURNAL_SLOT_CHANGED = 'journal_slot_changed',
+    JOURNAL_SLOT_CHANGE_VIEWED = 'journal_slot_change_viewed',
+    ADD_FAULT = 'add_fault',
+    REMOVE_FAULT = 'remove_fault',
+    SLOT_ID = 'slot_id',
+    REFRESH_MODE = 'refresh_mode',
+    ACTION = 'action',
+    JOURNAL_DAYS_FROM_TODAY = 'journal_days_from_today',
+    CANDIDATE_WITH_SPECIAL_NEEDS = 'candidate_with_special_needs',
+    CANDIDATE_WITH_CHECK = 'candidate_with_check',
+    CANDIDATE_ID = 'candidate_id',
+    ERROR_TYPE = 'error_type',
+    ERROR_EXCEPTION = 'error_exception',
+    ERROR_MESSAGE = 'error_message',
+    ERROR_FATAL = 'error_fatal',
   }
 
 export enum JournalRefreshModes {

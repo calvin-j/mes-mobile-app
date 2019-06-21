@@ -250,7 +250,6 @@ describe('LoginPage', () => {
       expect(component.authenticationProvider.login).not.toHaveBeenCalled();
       expect(component.initialisePersistentStorage).not.toHaveBeenCalled();
       expect(component.appConfigProvider.loadRemoteConfig).not.toHaveBeenCalled();
-      expect(component.analytics.initialiseAnalytics).not.toHaveBeenCalled();
       expect(component.validateDeviceType).not.toHaveBeenCalled();
     }));
 
@@ -280,10 +279,10 @@ describe('LoginPage', () => {
       // Should be called
       expect(component.platform.ready).toHaveBeenCalled();
       expect(component.initialiseAppConfig).toHaveBeenCalled();
+      expect(component.analytics.initialiseAnalytics).toHaveBeenCalled();
       // Shouldn't be called
       expect(component.initialisePersistentStorage).not.toHaveBeenCalled();
       expect(component.appConfigProvider.loadRemoteConfig).not.toHaveBeenCalled();
-      expect(component.analytics.initialiseAnalytics).not.toHaveBeenCalled();
       expect(component.validateDeviceType).not.toHaveBeenCalled();
     }));
 
@@ -297,9 +296,9 @@ describe('LoginPage', () => {
       expect(component.platform.ready).toHaveBeenCalled();
       expect(component.initialiseAppConfig).toHaveBeenCalled();
       expect(component.initialisePersistentStorage).toHaveBeenCalled();
+      expect(component.analytics.initialiseAnalytics).toHaveBeenCalled();
       // Shouldn't be called
       expect(component.appConfigProvider.loadRemoteConfig).not.toHaveBeenCalled();
-      expect(component.analytics.initialiseAnalytics).not.toHaveBeenCalled();
       expect(component.validateDeviceType).not.toHaveBeenCalled();
     }));
 
@@ -314,8 +313,8 @@ describe('LoginPage', () => {
       expect(component.initialiseAppConfig).toHaveBeenCalled();
       expect(component.initialisePersistentStorage).toHaveBeenCalled();
       expect(component.appConfigProvider.loadRemoteConfig).toHaveBeenCalled();
+      expect(component.analytics.initialiseAnalytics).toHaveBeenCalled();
       // Shouldn't be called
-      expect(component.analytics.initialiseAnalytics).not.toHaveBeenCalled();
       expect(component.validateDeviceType).not.toHaveBeenCalled();
     }));
   });

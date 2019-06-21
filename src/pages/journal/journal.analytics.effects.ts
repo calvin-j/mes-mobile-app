@@ -14,9 +14,8 @@ import {
   StartTest,
   JournalRefreshError } from '../../pages/journal/journal.actions';
 import {
-    AnalyticsDimensionIndices,
     AnalyticsScreenNames,
-    AnalyticsEventCategories,
+    AnalyticsParams,
     AnalyticsEvents,
   } from '../../providers/analytics/analytics.model';
 import { SLOT_HAS_CHANGED, SlotHasChanged } from '../../providers/slot/slot.actions';
@@ -46,14 +45,10 @@ export class JournalAnalyticsEffects {
     ofType(JOURNAL_NAVIGATE_DAY),
     switchMap(
       (action: JournalNavigateDay) => {
-        this.analytics.logEvent(
-          AnalyticsEventCategories.JOURNAL,
-          AnalyticsEvents.NAVIGATION,
-          this.analytics.getDescriptiveDate(action.day));
-
-        this.analytics.addCustomDimension(
-          AnalyticsDimensionIndices.JOURNAL_DAYS_FROM_TODAY,
-          this.analytics.getDiffDays(action.day).toString());
+        this.analytics.logEvent(AnalyticsEvents.JOURNAL_NAVIGATION, {
+          [AnalyticsParams.JOURNAL_DATE]: this.analytics.getDescriptiveDate(action.day),
+          [AnalyticsParams.JOURNAL_DAYS_FROM_TODAY]: this.analytics.getDiffDays(action.day).toString(),
+        });
 
         this.analytics.setCurrentPage(
           `${this.analytics.getDescriptiveDate(action.day)} ${AnalyticsScreenNames.JOURNAL}`);
@@ -68,7 +63,9 @@ export class JournalAnalyticsEffects {
     ofType(JOURNAL_REFRESH),
     switchMap(
       (action: JournalRefresh) => {
-        this.analytics.logEvent(AnalyticsEventCategories.JOURNAL, AnalyticsEvents.REFRESH_JOURNAL, action.mode);
+        this.analytics.logEvent(AnalyticsEvents.REFRESH_JOURNAL, {
+          [AnalyticsParams.REFRESH_MODE]: action.mode,
+        });
         return of();
       },
     ),
@@ -90,10 +87,9 @@ export class JournalAnalyticsEffects {
     ofType(SLOT_HAS_CHANGED),
     switchMap(
       (action: SlotHasChanged) => {
-        this.analytics.logEvent(
-          AnalyticsEventCategories.JOURNAL,
-          AnalyticsEvents.SLOT_CHANGED,
-          action.slotId.toString());
+        this.analytics.logEvent(AnalyticsEvents.JOURNAL_SLOT_CHANGED, {
+          [AnalyticsParams.SLOT_CHANGED]: action.slotId.toString(),
+        });
         return of();
       },
     ),
@@ -103,7 +99,9 @@ export class JournalAnalyticsEffects {
   testOutcomeStartTest$ = this.actions$.pipe(
     ofType(START_TEST),
     switchMap((action: StartTest) => {
-      this.analytics.logEvent(AnalyticsEventCategories.CLICK, AnalyticsEvents.START_TEST);
+      this.analytics.logEvent(AnalyticsEvents.START_TEST, {
+        [AnalyticsParams.SLOT_ID]: action.slotId.toString(),
+      });
       return of();
     }),
   );

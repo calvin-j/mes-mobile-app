@@ -86,6 +86,7 @@ export class LoginPage extends BasePageComponent {
       await this.platform.ready();
       await this.initialiseAppConfig();
 
+      this.analytics.initialiseAnalytics();
       this.initialiseAuthentication();
 
       await this.authenticationProvider.login();
@@ -96,7 +97,7 @@ export class LoginPage extends BasePageComponent {
 
       await this.appConfigProvider.loadRemoteConfig();
 
-      this.analytics.initialiseAnalytics();
+      this.analytics.setUserId();
       this.store$.dispatch(new StartSendingLogs());
 
       this.store$.dispatch(new StartSendingCompletedTests());

@@ -75,7 +75,6 @@ export class JournalPage extends BasePageComponent implements OnInit, OnDestroy 
     public incompleteTestsProvider: IncompleteTestsProvider,
   ) {
     super(platform, navController, authenticationProvider);
-    this.analytics.initialiseAnalytics().then(() => console.log('journal analytics initialised'));
     this.employeeId = this.authenticationProvider.getEmployeeId();
     this.isUnauthenticated = this.authenticationProvider.isInUnAuthenticatedMode();
     this.store$.dispatch(new journalActions.SetSelectedDate(this.dateTimeProvider.now().format('YYYY-MM-DD')));
