@@ -18,12 +18,6 @@ export class PassFinalisationAnalyticsEffects {
     public analytics: AnalyticsProvider,
     private actions$: Actions,
   ) {
-    this.analytics.initialiseAnalytics()
-          .then(() => {})
-          .catch(() => {
-            console.log('error initialising analytics');
-          },
-    );
   }
 
   @Effect()
