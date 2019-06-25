@@ -50,9 +50,12 @@ export class JournalAnalyticsEffects {
           [AnalyticsParams.JOURNAL_DAYS_FROM_TODAY]: this.analytics.getDiffDays(action.day).toString(),
         });
 
-        this.analytics.setCurrentPage(
-          `${this.analytics.getDescriptiveDate(action.day)} ${AnalyticsScreenNames.JOURNAL}`);
-
+        if (this.analytics.getDiffDays(action.day) !== 0) {
+          this.analytics.setCurrentPage(
+          `${AnalyticsScreenNames.JOURNAL} - ${this.analytics.getDescriptiveDate(action.day)}`);
+        } else {
+          this.analytics.setCurrentPage(AnalyticsScreenNames.JOURNAL);
+        }
         return of();
       },
     ),
