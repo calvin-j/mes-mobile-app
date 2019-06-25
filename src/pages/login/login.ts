@@ -28,6 +28,7 @@ import { AppConfigError } from '../../providers/app-config/app-config.constants'
 import { LogsProvider } from '../../providers/logs/logs';
 import { LogType, Log } from '../../shared/models/log.model';
 import { JOURNAL_PAGE } from '../page-names.constants';
+import { AnalyticsScreenNames } from '../../providers/analytics/analytics.model';
 
 @IonicPage()
 @Component({
@@ -87,6 +88,7 @@ export class LoginPage extends BasePageComponent {
       await this.initialiseAppConfig();
 
       this.analytics.initialiseAnalytics();
+      this.analytics.setCurrentPage(AnalyticsScreenNames.LOGIN);
       this.initialiseAuthentication();
 
       await this.authenticationProvider.login();
