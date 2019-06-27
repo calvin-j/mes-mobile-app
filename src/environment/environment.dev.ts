@@ -2,12 +2,12 @@ import { EnvironmentFile } from './models/environment.model';
 
 export const environment: EnvironmentFile = {
   isRemote: true,
-  configUrl: 'https://dev.mes.dev-dvsacloud.uk/v1/configuration/dev',
+  configUrl: 'https://andy.mes.dev-dvsacloud.uk/v1/configuration/dev',
   daysToCacheJournalData: 7,
   daysToCacheLogs: 7,
   logoutClearsTestPersistence: true,
   logsPostApiKey: '',
-  logsApiUrl: 'https://dev.mes.dev-dvsacloud.uk/v1/logs',
+  logsApiUrl: 'https://andy.mes.dev-dvsacloud.uk/v1/logs',
   logsAutoSendInterval: 6000,
   authentication: {
     context: 'https://login.windows.net/common',
