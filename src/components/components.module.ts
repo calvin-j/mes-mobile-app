@@ -14,6 +14,8 @@ import { TranslateModule } from 'ng2-translate';
 import { ConductedLanguageComponent } from './conducted-language/conducted-language';
 import { DisplayAddressComponent } from './display-address/display-address';
 import { PracticeModeBanner } from './practice-mode-banner/practice-mode-banner';
+import { ModalAlertTitleComponent } from './modal-alert-title/modal-alert-title';
+import { ModalReturnButtonComponent } from './modal-return-button/modal-return-button';
 
 @NgModule({
   declarations: [
@@ -27,6 +29,8 @@ import { PracticeModeBanner } from './practice-mode-banner/practice-mode-banner'
     ConductedLanguageComponent,
     DisplayAddressComponent,
     PracticeModeBanner,
+    ModalAlertTitleComponent,
+    ModalReturnButtonComponent,
   ],
   imports: [
     SignaturePadModule,
@@ -46,6 +50,8 @@ import { PracticeModeBanner } from './practice-mode-banner/practice-mode-banner'
     ConductedLanguageComponent,
     DisplayAddressComponent,
     PracticeModeBanner,
+    ModalAlertTitleComponent,
+    ModalReturnButtonComponent,
   ],
 })
 export class ComponentsModule { }

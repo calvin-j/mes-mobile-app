@@ -1,12 +1,10 @@
-import { JournalRekeyModal } from './journal-rekey-modal';
+import { JournalRekeyModal } from '../journal-rekey-modal';
 import { ComponentFixture, async, TestBed } from '@angular/core/testing';
-import { AppModule } from '../../../app/app.module';
+import { AppModule } from '../../../../../app/app.module';
 import { IonicModule, NavParams, ViewController } from 'ionic-angular';
 import { NavParamsMock, ViewControllerMock } from 'ionic-mocks';
 import { By } from '@angular/platform-browser';
-import {
-  ModalAlertTitleComponent,
-} from '../../test-report/components/test-report-modal/modal-alert-title/modal-alert-title';
+import { ComponentsModule } from '../../../../../components/components.module';
 
 describe('JournalRekeyModal', () => {
   let fixture: ComponentFixture<JournalRekeyModal>;
@@ -16,11 +14,11 @@ describe('JournalRekeyModal', () => {
     TestBed.configureTestingModule({
       declarations: [
         JournalRekeyModal,
-        ModalAlertTitleComponent,
       ],
       imports: [
         AppModule,
         IonicModule,
+        ComponentsModule,
       ],
       providers: [
         { provide: NavParams, useFactory: () => NavParamsMock.instance() },

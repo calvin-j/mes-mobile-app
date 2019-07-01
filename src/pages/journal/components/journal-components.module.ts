@@ -19,6 +19,7 @@ import { SubmissionStatusComponent } from './submission-status/submission-status
 import { PracticeEndToEndCardComponent } from './practice-end-to-end-card/practice-end-to-end-card';
 import { ProgressiveAccessComponent } from './progressive-access/progressive-access';
 import { TestResultsSearchCardComponent } from './test-results-search-card/test-results-search-card';
+import { JournalRekeyModalModule } from './journal-rekey-modal/journal-rekey-modal.module';
 
 @NgModule({
   declarations: [
@@ -44,6 +45,7 @@ import { TestResultsSearchCardComponent } from './test-results-search-card/test-
     CommonModule,
     IonicModule,
     PracticeTestModalModule,
+    JournalRekeyModalModule,
   ],
   entryComponents:[
     TestSlotComponent,
