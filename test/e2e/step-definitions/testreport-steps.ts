@@ -1,7 +1,6 @@
 import { Then, When } from 'cucumber';
-import { getElement, clickElement, getParentContext } from './generic-steps';
-import { browser, by, element, ExpectedConditions } from 'protractor';
-import { TEST_CONFIG } from '../test.config';
+import { getElement, clickElement } from './generic-steps';
+import { browser, by } from 'protractor';
 
 const chai = require('chai');
 const chaiAsPromised = require('chai-as-promised');
@@ -16,25 +15,25 @@ const endTest = () => {
   clickElement(endTestButton);
 };
 
-// This needs to be correctly re-implemented with the Test Report page
 const completeLegalRequirements = () => {
-  // Click all the legal requirements - having to go native as normal find and click not working. Not sure why.
-  browser.driver.getCurrentContext().then((webviewContext) => {
-    // Switch to NATIVE context
-    browser.driver.selectContext('NATIVE_APP').then(() => {
-      const legalRequirements = element.all(by.xpath('//XCUIElementTypeImage[@label="checkmark"]'));
-      legalRequirements.each((legalRequirement) => {
-        browser.wait(ExpectedConditions.elementToBeClickable(legalRequirement));
-        legalRequirement.click().then((promise) => {
-          browser.sleep(TEST_CONFIG.ACTION_WAIT);
-          return promise;
-        });
-      });
-
-      // Switch back to WEBVIEW context
-      browser.driver.selectContext(getParentContext(webviewContext));
-    });
-  });
+  const normalStart1 = getElement(
+    by.xpath('//legal-requirement[@ng-reflect-legal-requirement="normalStart1"]/competency-button/div'));
+  longPressButton(normalStart1);
+  const normalStart2 = getElement(
+    by.xpath('//legal-requirement[@ng-reflect-legal-requirement="normalStart2"]/competency-button/div'));
+  longPressButton(normalStart2);
+  const angledStart = getElement(
+    by.xpath('//legal-requirement[@ng-reflect-legal-requirement="angledStart"]/competency-button/div'));
+  longPressButton(angledStart);
+  const hillStart = getElement(
+    by.xpath('//legal-requirement[@ng-reflect-legal-requirement="hillStart"]/competency-button/div'));
+  longPressButton(hillStart);
+  const ecoTick = getElement(
+    by.xpath('//competency-button[contains(@class, "eco-tick")]/div'));
+  longPressButton(ecoTick);
+  const showMeTick = getElement(
+      by.xpath('//competency-button[contains(@class, "show-me-question-tick")]/div'));
+  longPressButton(showMeTick);
 };
 
 When('I end the test', () => {
