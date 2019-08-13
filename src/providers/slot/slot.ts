@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { DeepDiff } from 'deep-diff';
-import { flatten, times } from 'lodash';
+import { flatten, times, isEmpty } from 'lodash';
 import { Store } from '@ngrx/store';
 import { StoreModel } from '../../shared/models/store.model';
 import { SlotItem } from '../slot-selector/slot-item';
@@ -44,8 +44,11 @@ export class SlotProvider {
         }
       }
 
-      const personalCommitment =
-        newJournal.personalCommitments.filter(commitment => commitment.slotId === newSlot.slotDetail.slotId);
+      let personalCommitment =  null;
+      if (!isEmpty(newJournal.personalCommitments)) {
+        personalCommitment =
+          newJournal.personalCommitments.filter(commitment => commitment.slotId === newSlot.slotDetail.slotId);
+      }
 
       // add personalCommitment information to SlotItem, component and activityCode set to null
       // as they are not constructed at this stage.
